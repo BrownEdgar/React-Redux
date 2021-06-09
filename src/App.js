@@ -1,17 +1,19 @@
-/*
-useSelector-ը ընդունում է ֆունկցիա,(որը որոշում է "state"-ի որ մասն մենք պետք է վերադարձնենք) և որի մեջ մեզ է հասնում ամբողջ "state"-ը
-մենք այդ "state"-ից կարող ենք վերցնել միայն մեր ուզածը (ՏՈՂ 14)
-useDispatch() Hook-ֆունկցիան կանչում էնք և փողանցում ենք "action" օբյեկտ, որը մկարագրում է "state"-ի "ապագա" փոփողության մանրամասները։
-"type"- համաձայնեցված անուն է, որը որոսհում է թե ինչ պետք է "reducer"-ը ("state"-ի փեփեղության համար պատասղանատու ֆունկցիան է)
-"payload"-ը օգտակար տվյալները
-*/
+//////////////////////////////////////////////////////////////
+//						  ԱՅՍ ՄԱՍՈՒՄ (3)					
+//  ավելացված է Friends կոմպոնենտը, որը ավելացնում է նոր ընկեր 
+// 	useSelector-ին փոխանցվող ֆունկցիան նույնպես առանձնացված է "friend.js"-ում "selectFriendName" անունով
+//  dispatch-ին տրվող ֆունկցիան նուընպես առանձնացված է, կոդը պարզեցնելու նպատակով, այն նույնպես տեղափոխված է "friend.js" `changeFriendName` անունով
+
+//////////////////////////////////////////////////////////////
 
 import './App.css';
 import { useSelector, useDispatch} from "react-redux"
+import { selectFriendName, changeFriendName} from "./redux/features/friends"
+import Friends from './Friends';
 
 function App() {
 
-	const name = useSelector(state => state.friend.name)
+	const name = useSelector(selectFriendName)
 	const dispatch = useDispatch()
 
   return (
@@ -22,10 +24,8 @@ function App() {
 
 		<input type="text" 
 		value={name} 
-			  onChange={(e) => { dispatch({
-				  type: "change-friend-name",
-				  payload: { name: e.target.value}
-			  })}} />
+			  onChange={(e) => { dispatch(changeFriendName(e.target.value))}} />
+			  <Friends/>
     </div>
 
   );

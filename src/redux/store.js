@@ -1,54 +1,19 @@
 //////////////////////////////////////////////////////////////
-//						ԱՅՍ ՄԱՍՈՒՄ					
-// state-ը առանձնացված է առանձին initialState-ով
-// state-ի ամեն մի կտորը փողելու համար օգտագործված է առանձին ֆունկցիաներ (friendReduser,serialsReduser )
-// createStore-ում այդ ամենը համակարգելու համար արդեն օգտագործված է combineReducers,
+//						  ԱՅՍ ՄԱՍՈՒՄ (3)					
+//  friendReduser & serialsReduser ֆունկցիաները և State-ի համապատասղան մասերը արդեն առանձնացվում են առանձին ֆայլերում, այստեղ նրանք օգտագործվում են import-ի միջոցով
+// friendReduser-ում ավելացված է "add-friends" action-ը
+//
 
 //////////////////////////////////////////////////////////////
 
 import { combineReducers, createStore } from "redux";
+import { friendReduser, initialFriendsValue } from './features/friends'
+import { serialsReduser, initialSerialsValue } from './features/seriales'
 
 
 const initialState = {
-	serials: [
-		{
-			id: 1,
-			title: "friends",
-			ratings: "9.8",
-			actors: ['Courteney Cox', 'Jennifer Aniston', 'Lisa Kudrow', 'Matt LeBlanc', 'Matthew Perry', 'David Schwimmer'],
-			poster: "https://wallpapercave.com/wp/wp3256631.jpg"
-		},
-		{
-			id: 2,
-			title: "Prison Break",
-			ratings: "9.7",
-			actors: ['Wentworth Miller', 'Dominic Purcell', 'Robert Knepper', 'Sarah Wayne Callies', 'William Fichtner'],
-			poster: "https://wallpapercave.com/wp/wp3988846.jpg"
-		}
-	],
-
-	friend: {
-		name: "Jhon snow"
-	}
-}
-
-function friendReduser(state={}, action) {
-	if (action.type === "change-friend-name") {
-		return { 
-			...state,
-			 name: action.payload.name
-		 }
-	}
-	return state;
-}
-function serialsReduser(state = [], action) {
-	if (action.type === "add-serials") {
-		return {
-			...state,
-			
-		}
-	}
-	return state;
+	serials: initialSerialsValue,
+	friend: initialFriendsValue
 }
 
 

@@ -6,6 +6,7 @@
 body{
 	background-color: #111;
 	color: #56A6FF;
+	margin: 0 50px;
 }
 
 hr{
@@ -20,4 +21,13 @@ hr{
 	text-align: center;
 	
 }
-
+button{
+	background-color: #ee6352;
+	color: #fff;
+	padding: 0.5rem;
+	font-size: 14px;
+	border:none;
+}
+button:hover {
+	cursor: pointer;
+}
