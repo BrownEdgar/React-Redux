@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after{
+	box-sizing: border-box;
+}
+body{
+	background-color: #111;
+	color: #56A6FF;
+}
+
+hr{
+	width: 30%;
+	height: 1px;
+	border: none;
+	background-color: #56A6FF;
+
+}
+
+#title{
+	text-align: center;
+	
+}
+
