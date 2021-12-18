@@ -7,7 +7,7 @@ useDispatch() Hook-ֆունկցիան կանչում էնք և փողանցու�
 */
 
 import './App.css';
-import { useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 
 function App() {
@@ -15,17 +15,19 @@ function App() {
 	const name = useSelector(state => state.friend.name)
 	const dispatch = useDispatch()
 
-  return (
-    <div className="App">
-		<h1>{name}</h1>
-		<input type="text" 
-		value={name} 
-			  onChange={(e) => { dispatch({
-				  type: "change-friend-name",
-				  payload: { name: e.target.value}
-			  })}} />
-    </div>
-  );
+	return (
+		<div className="App">
+			<h1>{name}</h1>
+			<input type="text"
+				value={name}
+				onChange={(e) => {
+					dispatch({
+						type: "change-friend-name",
+						payload: { name: e.target.value }
+					})
+				}} />
+		</div>
+	);
 }
 
 export default App;
