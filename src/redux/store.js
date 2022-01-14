@@ -1,16 +1,20 @@
 import { createStore } from "redux";
+import ActionTypes from './actionTypes'
+const initialState = {
+	arr:[],
+	bonus: 1500,
 
-const store = createStore(function (state, action) {
-	if (action.type === "change-friend-name") {
-		return { friend: { name: action.payload.name} }
-	}
-	return state;
-
-}, {
 	friend: {
 		name: "Jhon snow"
 	}
-})
+
+}
+function createReduser(state, action) {
+	if (action.type === ActionTypes.changeName) {
+		return { friend: { name: action.payload.name } }
+	}
+	return state;
+
+}
+const store = createStore(createReduser, initialState )
 export default store
-
-

@@ -7,7 +7,7 @@ useDispatch() Hook-ֆունկցիան կանչում էնք և փողանցու�
 */
 
 import { useSelector, useDispatch } from "react-redux"
-
+import ActionTypes from './redux/actionTypes'
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
 				value={name}
 				onChange={(e) => {
 					dispatch({
-						type: "change-friend-name",
+						type: ActionTypes.changeName,
 						payload: { name: e.target.value }
 					})
 				}} />
