@@ -1,4 +1,5 @@
- const ACTION_TYPES = {
-	changeName: "CHANGE_FRIEND_NAME"
+const ACTION_TYPES = {
+	deleteTodosById: "DELETE_BY_ID",
+	toggleValid: "TOGGLE_VALUE"
 }
 export default ACTION_TYPES;
