@@ -8,6 +8,7 @@ useDispatch() Hook-ֆունկցիան կանչում էնք և փողանցու�
 
 import './App.css';
 import { useSelector, useDispatch} from "react-redux"
+import Friends from './Friends';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
 				  type: "change-friend-name",
 				  payload: { name: e.target.value}
 			  })}} />
+			  <Friends/>
     </div>
 
   );
