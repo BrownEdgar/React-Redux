@@ -1,20 +1,25 @@
-
 import { useSelector, useDispatch } from "react-redux"
-import Types from './redux/actionTypes'
+
 
 
 function App() {
-	const state = useSelector(state => state)
-	const dispatch = useDispatch()
-	console.log(state);
+	const todoList = useSelector(state => state.todo);
+	const dispatch = useDispatch();
 	return (
 		<div className="App">
-			<h1>Redux</h1>
-			<button onClick={() => dispatch({type: Types.deleteTodosById, payload:{id:2}})}>Delete</button>
-			<button onClick={() => dispatch({ type: Types.toggleValid})}>toggle</button>
-			<pre>{
-					JSON.stringify(state.todos, null,1)
-				}</pre>
+			<pre>
+				{JSON.stringify(todoList,null,1)}
+			
+			</pre>
+			<button onClick={() => dispatch({
+				type: "ADD-TODO",
+				payload: {
+					"userId": 1,
+					"id": 5,
+					"title": "My todo",
+					"completed": false
+				}
+			})}>add todo</button>
 		</div>
 	);
 }

@@ -1,8 +1,7 @@
 import { createStore } from 'redux'
-import Types from './actionTypes'
 
 const initialState = {
-	todos: [
+	todo:[
 		{
 			"userId": 1,
 			"id": 1,
@@ -21,24 +20,20 @@ const initialState = {
 			"title": "fugiat veniam minus",
 			"completed": false
 		}
-	],
-	isValid: false,
+	]
 }
-function deleteByID(state, id ) {
-	let newtodos = [...state.todos].filter(elem => elem.id !== id);
-	return { ...state, todos: newtodos }
-}
-const todoRedusers = (state={}, action) => {
-	if (action.type === Types.deleteTodosById) {
-		return deleteByID(state, action.payload.id)
-	}
-	if (action.type === Types.toggleValid) {
-		return { ...state, isValid: !state.isValid}
+
+const isConteins = (list,newItem) => { 
+	return list.some(elem => elem.id === newItem.id)
+ }
+const createReducer = (state,action) => {
+	if (action.type === "ADD-TODO") {
+		return !isConteins(state.todo, action.payload) 
+		? {todo: [...state.todo, action.payload]}
+		: state
 	}
 	return state
 }
+const store = createStore(createReducer, initialState)
 
-
-const store = createStore(todoRedusers,initialState);
-
-export default store
+export default store;
