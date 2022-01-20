@@ -7,25 +7,12 @@
 //////////////////////////////////////////////////////////////
 
 import './App.css';
-import { useSelector, useDispatch} from "react-redux"
-import { selectFriendName, changeFriendName} from "./redux/features/friends"
-import Friends from './Friends';
+import Serials from './Serials';
 
 function App() {
-
-	const name = useSelector(selectFriendName)
-	const dispatch = useDispatch()
-
   return (
     <div className="App">
-		<h1 id="title">Redux Tutorial</h1>
-		<hr />
-		<h1>{name}</h1>
-
-		<input type="text" 
-		value={name} 
-			  onChange={(e) => { dispatch(changeFriendName(e.target.value))}} />
-			  <Friends/>
+		  <Serials/>
     </div>
 
   );

@@ -1,9 +1,8 @@
+import { getASYNCSerials } from "./AsyncSerials";
+
 export function serialsReduser(state = [], action) {
 	if (action.type === "add-serials") {
-		return {
-			...state,
-
-		}
+		return [...state, action.payload.item]
 	}
 	return state;
 }
@@ -24,3 +23,25 @@ export const initialSerialsValue = [
 		poster: "https://wallpapercave.com/wp/wp3988846.jpg"
 	}
 ]
+
+////actionCreater (thunk),որը վերադարձնում է ֆունկցիա, որը ապագայում կարող է կատարել ինչ-որ գործողություն:
+// getState=> ամենավերջին ստեյտն է
+// Այս ֆունկցիան dispatch-ին փոխանցելիս "error"-ից խուսափոլու համար և պետք է "store.js" ֆայլի ՝ `applyMiddleware(thunk) ` գրվածքը։thunk-ը կարողանում է  dispatch-ին փոխանցել ֆունկցիա, մենք՝ ոչ
+export function loadSerial() {
+	return function (dispatch, getState) {
+		return getASYNCSerials().then(serial => {
+			dispatch(addSerial(serial))
+		})
+		
+	}
+}
+//actionCreater
+function addSerial(newSerials) {
+	return {
+		type: "add-serials",
+		payload:{
+			item: newSerials
+		}
+	}
+	
+}

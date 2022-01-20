@@ -22,12 +22,26 @@ hr{
 	
 }
 button{
-	background-color: #ee6352;
+	background-color: #05617e;
 	color: #fff;
-	padding: 0.5rem;
+	padding: 1rem;
+	width: 240px;
+	margin-left: 50px;
 	font-size: 14px;
+	transition: 0.3s;
 	border:none;
 }
 button:hover {
 	cursor: pointer;
+	background-color: #00bb92;
+	transform: translateY(-4px);
+	transition: 0.3s;
+}
+pre {
+	box-shadow: rgba(3, 93, 93, 0.979) 0px 2px 15px, rgba(180, 175, 175, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	background-color: rgba(255, 255, 255, 0.089);
+	padding: 20px 30px;
+	font-family: 'Courier New', Courier, monospace;
+	border-radius: 8px;
+	border: 1px solid rgba(245, 245, 245, 0.349);
 }
