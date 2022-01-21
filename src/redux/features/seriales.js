@@ -1,9 +1,6 @@
 export function serialsReduser(state = [], action) {
 	if (action.type === "add-serials") {
-		return {
-			...state,
-
-		}
+		return [...state, action.payload.item]
 	}
 	return state;
 }
@@ -24,3 +21,13 @@ export const initialSerialsValue = [
 		poster: "https://wallpapercave.com/wp/wp3988846.jpg"
 	}
 ]
+
+//actionCreater 
+export function addSerial(newSerial) {
+	return {
+		type: 'add-serials',
+		payload:{
+			item: newSerial,
+		} 
+	}
+}
