@@ -3,7 +3,7 @@
 // * Օրինակ 1վրկ․ հետո վերադարձվում է 3-րդ սերյալը Promise-ից, որը հետո կպահվի Store-ում
 //////////////////////////////////////////////////////////////
 export function getASYNCSerials() {
-	 return new Promise((resolve, reject) => {
+	 return new Promise((resolve) => {
 	  setTimeout(() => {
 		  resolve({
 			  id: 5,
