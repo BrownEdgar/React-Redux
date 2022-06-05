@@ -2,7 +2,6 @@
 //						  ԱՅՍ ՄԱՍՈՒՄ (3)					
 //  friendReduser & serialsReduser ֆունկցիաները և State-ի համապատասղան մասերը արդեն առանձնացվում են առանձին ֆայլերում, այստեղ նրանք օգտագործվում են import-ի միջոցով
 // friendReduser-ում ավելացված է "add-friends" action-ը
-//
 
 //////////////////////////////////////////////////////////////
 
@@ -12,14 +11,14 @@ import { serialsReduser, initialSerialsValue } from './features/seriales'
 
 
 const initialState = {
-	serials: initialSerialsValue,
-	friend: initialFriendsValue
+  serials: initialSerialsValue,
+  friend: initialFriendsValue
 }
 
 
 const store = createStore(combineReducers({
-	friend:friendReduser,
-	serials:serialsReduser,
+  friend: friendReduser,
+  serials: serialsReduser,
 }), initialState)
 
 
