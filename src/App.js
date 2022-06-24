@@ -10,6 +10,7 @@ import './App.css';
 import { useSelector, useDispatch } from "react-redux"
 import { selectFriendName, changeFriendName } from "./redux/features/friends"
 import Friends from './Friends';
+import Serials from './Serials';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         value={name}
         onChange={(e) => { dispatch(changeFriendName(e.target.value)) }} />
       <Friends />
+			<Serials /> 
     </div>
 
   );

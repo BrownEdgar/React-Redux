@@ -15,32 +15,37 @@ import { serialsReduser, initialSerialsValue } from './features/seriales'
 // mas 4 middleWare
 let count = 0
 function myMiddleWare(store) {
-  return function (next) {
-    return function (action) {
-      console.log(`middleWare run ${count++} times`);
-      //Այս տողը եթե չգրեն առաջ չի անցնի, կտպի միայն "log"-ը  
-      return next(action)
-    }
-  }
+	return function (next) {
+		return function (action) {
+			console.log(`middleWare run ${count++} times`);
+			//Այս տողը եթե չգրեն առաջ չի անցնի, կտպի միայն "log"-ը 
+			if (action.type === "ADD_SERIALS") {
+				action.payload.date = new Date().toLocaleDateString()
+			}
+		
+		}
+	}
 }
 
 const middleNameChanger = (store) => (next) => (action) => {
-  action.payload.name += `🎁`;
-  return next(action);
+	if (action.type === "add-friends") {
+		action.payload += `🎁`;
+	}
+	return next(action);
 }
 
 const initialState = {
-  serials: initialSerialsValue,
-  friend: initialFriendsValue
+	serials: initialSerialsValue,
+	friend: initialFriendsValue
 }
 
 
 const store = createStore(combineReducers({
-  friend: friendReduser,
-  serials: serialsReduser,
+	friend: friendReduser,
+	serials: serialsReduser,
 }),
-  initialState,
-  applyMiddleware(myMiddleWare, middleNameChanger))
+	initialState,
+	applyMiddleware(myMiddleWare, middleNameChanger))
 
 
 export default store

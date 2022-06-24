@@ -1,9 +1,9 @@
 export function serialsReduser(state = [], action) {
-	if (action.type === "add-serials") {
-		return {
+	if (action.type === "ADD_SERIALS") {
+		return [
 			...state,
-
-		}
+			action.payload
+		]
 	}
 	return state;
 }
