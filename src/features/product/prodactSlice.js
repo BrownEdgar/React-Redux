@@ -1,5 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit'
 import { fetchProducts } from './ProductAPI'
+
+// about createAction 
+// https://redux-toolkit.js.org/api/createAction
+//Redux-ի "helper function"-ից մեկն է, որի միջոցով ստեղծվում է "action"
+export const incrementBy = createAction('incrementBy')
 
 //about createAsyncThunk
 // link => https://redux-toolkit.js.org/api/createAsyncThunk
@@ -17,18 +22,24 @@ export const productSlice = createSlice({
   initialState: {
     simpleProduct: [],
     asyncProduct: [],
+    createActionData: ""
   },
   reducers: {
     getAll: (state) => {
+      // state = Proxy{} որովհետև մենք չունենք անմիջական "доступ" գլոբալ ՛state՛-ին 
+      // այս ՛state՛-ը ոչինչ չգիտի մեր գլոբալ ՛state՛-ի մասին, այն մեր "initialState"-ն է
+      console.log(state)
       state.simpleProduct = [{ id: 1 }]
     },
-    getByID: (state, action) => {
+    getByID: (state) => {
       state.value -= 1
     },
     deleteByID: (state, action) => {
       state.value += action.payload
     },
   },
+  //բացի օրինակում ներկայացված ասինխռոն գործողությանը,
+  // extraReducers-ը թույլ է տալիս հետեվել այլ տիպի "action"-ին ևս*  
   extraReducers: (builder) => {
     builder
       .addCase(addProductsAsync.pending, (state) => {
@@ -45,15 +56,30 @@ export const productSlice = createSlice({
           asyncProduct: action.payload
         }
       })
-      .addCase(addProductsAsync.rejected, (state, action) => {
-        console.log('action')
+      .addCase(addProductsAsync.rejected, (state) => {
         return {
           ...state,
           status: "fail"
         }
       })
+      .addCase(incrementBy, (state) => { // with createAction
+        return {
+          ...state,
+          createActionData: "done!"
+        }
+      })
   }
 })
 
-export const { getAll, getByID, deleteByID, } = productSlice.actions
 export default productSlice.reducer
+export const { getAll, getByID, deleteByID, } = productSlice.actions
+
+
+
+
+// * extraReducers: {
+//     [incrementBy]: (state, action) => {
+//       return state + action.payload
+//     },
+//     'some/other/action': (state, action) => {},
+//   },

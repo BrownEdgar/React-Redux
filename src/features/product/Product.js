@@ -4,7 +4,7 @@ import { getAll, addProductsAsync } from './prodactSlice'
 
 
 export function Product() {
-  const products = useSelector((state) => state)
+  const products = useSelector((state) => state.products)
   const dispatch = useDispatch()
 
   useEffect(() => {

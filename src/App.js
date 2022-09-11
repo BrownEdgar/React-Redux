@@ -1,15 +1,19 @@
 import { useSelector, useDispatch } from "react-redux"
+import { incrementBy } from './features/product/prodactSlice';
+import { Product } from './features/product/Product';
 
 
 
 function App() {
-	const state = useSelector(state => state);
-	const dispatch = useDispatch();
-	return (
-		<div className="App">
+  const dispatch = useDispatch();
+  const withCraeteAction = () => dispatch(incrementBy())
+  return (
+    <div className="App">
 
-		</div>
-	);
+      <Product />
+      <button onClick={withCraeteAction}>withCraeteAction</button>
+    </div>
+  );
 }
 
 export default App;
