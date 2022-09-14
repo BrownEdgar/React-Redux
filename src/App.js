@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { incrementBy } from './features/product/prodactSlice';
 import { Product } from './features/product/Product';
 
