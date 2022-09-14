@@ -6,5 +6,4 @@ export function fetchProducts(url) {
         resolve(data)
       })
   })
-
 }

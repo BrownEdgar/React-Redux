@@ -9,7 +9,6 @@ function App() {
   const withCraeteAction = () => dispatch(incrementBy())
   return (
     <div className="App">
-
       <Product />
       <button onClick={withCraeteAction}>withCraeteAction</button>
     </div>

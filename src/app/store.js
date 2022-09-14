@@ -6,3 +6,8 @@ export default configureStore({
     products: prodactSlice,
   },
 })
+
+
+// const reducer = combineReducers(reducers)
+// applyMiddleware supercharges createStore with middleware:
+// const store = createStore(reducer, applyMiddleware(thunk))
