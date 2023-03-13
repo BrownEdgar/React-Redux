@@ -1,7 +1,17 @@
-import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, createAction, createSelector } from '@reduxjs/toolkit'
+
 import { fetchProducts } from './ProductAPI'
 
-// about createAction 
+
+// // new way
+// createSelector()
+// ամեն անգամ կվերադարձնի նոր զանգված + թարմացում
+export const complitedTodo = state => {
+  console.log(state);
+  return state.products.asyncTodo
+}
+
+
 // https://redux-toolkit.js.org/api/createAction
 //Redux-ի "helper function"-ից մեկն է, որի միջոցով ստեղծվում է "action"
 export const incrementBy = createAction('incrementBy')
@@ -20,26 +30,17 @@ export const addProductsAsync = createAsyncThunk(
 export const productSlice = createSlice({
   name: "PRODUCTS",
   initialState: {
-    simpleProduct: [],
-    asyncProduct: [],
+    asyncTodo: [],
     createActionData: ""
   },
   reducers: {
-    getAll: (state) => {
-      // state = Proxy{} որովհետև մենք չունենք անմիջական "доступ" գլոբալ ՛state՛-ին 
-      // այս ՛state՛-ը ոչինչ չգիտի մեր գլոբալ ՛state՛-ի մասին, այն մեր "initialState"-ն է
-      console.log(state)
-      state.simpleProduct = [{ id: 1 }]
+    filteredTodo: (state) => {
+      state.asyncTodo = state.todoContainer.filter(todo => todo.completed)
     },
-    getByID: (state) => {
-      state.value -= 1
-    },
-    deleteByID: (state, action) => {
-      state.value += action.payload
-    },
+    cancelFilter: (state) => {
+      state.asyncTodo = state.todoContainer
+    }
   },
-  //բացի օրինակում ներկայացված ասինխռոն գործողությանը,
-  // extraReducers-ը թույլ է տալիս հետեվել այլ տիպի "action"-ին ևս*  
   extraReducers: (builder) => {
     builder
       .addCase(addProductsAsync.pending, (state) => {
@@ -53,7 +54,8 @@ export const productSlice = createSlice({
         return {
           ...state,
           status: "success",
-          asyncProduct: action.payload
+          asyncTodo: action.payload,
+          todoContainer: action.payload
         }
       })
       .addCase(addProductsAsync.rejected, (state) => {
@@ -62,24 +64,17 @@ export const productSlice = createSlice({
           status: "fail"
         }
       })
-      .addCase(incrementBy, (state) => { // with createAction
+      .addCase(incrementBy, (state) => {
+        console.log("asd"); // with createAction(in App.js row 9)
         return {
           ...state,
-          createActionData: "done!"
+          createActionData: "asd!"
         }
       })
   }
 })
 
 export default productSlice.reducer
-export const { getAll, getByID, deleteByID, } = productSlice.actions
+export const { filteredTodo, cancelFilter } = productSlice.actions
 
 
-
-
-// * extraReducers: {
-//     [incrementBy]: (state, action) => {
-//       return state + action.payload
-//     },
-//     'some/other/action': (state, action) => {},
-//   },
