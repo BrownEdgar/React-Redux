@@ -1,10 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
 import prodactSlice from '../features/product/prodactSlice'
+import { applyMiddleware } from 'redux'
 
+
+
+const myMiddleware = (store) => (next) => (action) => {
+  console.log('myMiddleware');
+  console.log(action);
+  next(action)
+}
 export default configureStore({
   reducer: {
     products: prodactSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(myMiddleware),
+
 })
 
 
