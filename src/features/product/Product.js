@@ -10,9 +10,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAll, addProductsAsync } from './prodactSlice'
+import { getAll, addProductsAsync, connect } from './prodactSlice'
 
 
 export function Product() {
@@ -39,7 +38,7 @@ const mapStateToProps = (state, ownProps) => {
   const { products } = state
   return {
     products,
-    // ՛ownProps՛-ը այստեղկարող ենք չվերադարձնել, քանի որ ՛connect()՛-ը ավտոմատ կմիավորի այս թ տարբեր ՛props՛-ը մեկում!
+    // ՛ownProps՛-ը այստեղկարող ենք չվերադարձնել, քանի որ ՛connect()՛-ը ավտոմատ կմիավորի այս 2 տարբեր ՛props՛-ը մեկում!
     ownProps
   }
 }

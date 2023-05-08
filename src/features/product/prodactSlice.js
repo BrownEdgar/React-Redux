@@ -1,10 +1,21 @@
-import { createAsyncThunk, createSlice, createAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, createAction, nanoid } from '@reduxjs/toolkit'
 import { fetchProducts } from './ProductAPI'
 
 // about createAction 
 // https://redux-toolkit.js.org/api/createAction
 //Redux-ի "helper function"-ից մեկն է, որի միջոցով ստեղծվում է "action"
 export const incrementBy = createAction('incrementBy')
+
+
+export const addProduct = createAction('todos/add', function prepare(text) {
+  return {
+    payload: {
+      text,
+      id: nanoid(),
+      createdAt: new Date().toISOString(),
+    },
+  }
+})
 
 //about createAsyncThunk
 // link => https://redux-toolkit.js.org/api/createAsyncThunk
