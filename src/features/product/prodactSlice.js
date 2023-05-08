@@ -11,6 +11,13 @@ export const complitedTodo = state => {
   return state.products.asyncTodo
 }
 
+export const selectComplited = createSelector(
+  complitedTodo,
+  (todos) => {
+    return todos.filter(todo => todo.completed)
+  }
+)
+
 
 // https://redux-toolkit.js.org/api/createAction
 //Redux-ի "helper function"-ից մեկն է, որի միջոցով ստեղծվում է "action"
@@ -31,6 +38,7 @@ export const productSlice = createSlice({
   name: "PRODUCTS",
   initialState: {
     asyncTodo: [],
+    todoContainer: [],
     createActionData: ""
   },
   reducers: {

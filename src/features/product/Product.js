@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addProductsAsync, cancelFilter, complitedTodo, filteredTodo } from './prodactSlice'
+import { addProductsAsync, cancelFilter, complitedTodo, filteredTodo, selectComplited } from './prodactSlice'
 
 
 export function Product() {
-  // այս կտորը փողարինվում է reselect-ով
+  // այս կտորը փողարինվում է selectComplited-ով
   // новый экземпляр селектора создается всякий раз, когда компонент визуализируется.
   const products = useSelector(complitedTodo)
   const dispatch = useDispatch()
