@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { TodoList } from './features/product/TodoList';
 import { addTodo } from './features/product/todoSlice';
 

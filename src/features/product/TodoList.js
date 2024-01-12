@@ -1,15 +1,7 @@
-import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-
-
-
 
 export function TodoList() {
   const todolist = useSelector((state) => state.todos.todolist)
-
-  console.log(todolist);
-
-
 
   return (
     <div>

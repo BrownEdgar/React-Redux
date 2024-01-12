@@ -45,7 +45,7 @@ input {
 
 input[type="text"]:focus {
   outline: 1px solid rgb(24, 189, 65);
-  padding: 0.7rem;
+
 }
 
 input[type="text"] {

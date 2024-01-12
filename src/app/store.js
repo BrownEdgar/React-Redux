@@ -22,6 +22,11 @@ const persistConfig = {
   // whitelist: ['navigation'] // ինչ պետք է պահել localStorage-ում
 }
 
+const myMiddleware = (store) => (next) => (action) => {
+  console.log('myMiddleware')
+  next(action)
+}
+
 const rootReducer = combineReducers({
   todos: todoSlice,
 })
@@ -34,9 +39,9 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,],
       },
-    }),
+    }).concat(myMiddleware)
 })
 
 export const persistor = persistStore(store)
