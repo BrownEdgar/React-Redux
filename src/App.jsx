@@ -1,7 +1,10 @@
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTodo, selectUsers } from './features/usersSlice'
+import { add, fetchTodo, selectUsers, todoColorSelected } from './features/usersSlice'
+
+
+
 
 export default function App() {
   const users = useSelector(selectUsers);
@@ -9,10 +12,12 @@ export default function App() {
 
   useEffect(() => {
     dispatch(fetchTodo())
+    dispatch(todoColorSelected("aharon"))
   }, [dispatch])
 
   return (
     <div>
+      <button onClick={() => dispatch(add(3))}>add</button>
       <pre>
         {JSON.stringify(users, null, 1)}
       </pre>
